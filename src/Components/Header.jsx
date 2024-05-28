@@ -9,8 +9,12 @@ import { MdLightbulb } from "react-icons/md";
 import { useState } from 'react';
 import Badge from '@mui/material/Badge';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const Header = () => {
    const [thema, setThema] = useState(true)
+   const {productsCount,value} = useSelector((store)=>store.basket)
+  console.log("headerdaki basket products :",productsCount)
+  
 
    const navigate = useNavigate()
 
@@ -43,13 +47,11 @@ const Header = () => {
              
 
 
-             <Badge badgeContent={count} color="primary">
-               <SlBasket className='icon'/>
+             <Badge badgeContent={productsCount} color="primary">
+               <SlBasket  onClick={()=>navigate("/order")}  className='icon'/>
       
-    </Badge>
-              
-            
-            
+              </Badge>            
+                       
          </div>  
 
     </div>

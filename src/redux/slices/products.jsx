@@ -9,8 +9,8 @@ import axios from "axios";
 
 const initialState = { // burası stateti temsi ediyor
   products: [],
-  selectedProduct:{},
-  loading: true,
+  selectedProduct:{}, // detay sayfasında görünen pruduct
+  loading: true, // loading durumuna göre özel bir materaila ui kütüphanesi ile bekleme efekti yapıyoruz 
   value: 20,
 };
 
@@ -35,7 +35,7 @@ export const products = createSlice({
   },
   extraReducers: (builder) => { // koda karışık görünebilir ama önemli değil sonuçta bu şekilde programlanması için dizayn edilmiş
     builder.addCase(getAllProducts.pending, (state) => { // 
-      state.loading = false;
+      state.loading = true;
   
     });
     builder.addCase(getAllProducts.fulfilled, (state, action) => {

@@ -7,6 +7,48 @@ padding: 0px;
 /* .header {
   background-color: rgb(15, 186, 186);
 } */
+.urun_show{
+      width: 912px ;
+      height: auto;
+      box-shadow: 2px 4px 3px lightgrey;
+      margin: 20px;
+      border-radius: 10px;
+}
+.fixed_div{
+  position: fixed;
+  bottom: 5px;
+  right: 50px;
+
+}
+.totalclas{
+  position: fixed;
+  top: 527px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px ;
+  height: 55px;
+  box-shadow: 2px 1px 6px;
+  margin-right: 100px;
+  margin-left: 100px;
+  background-color: #ffffff;
+  color: rgb(24, 24, 24);
+  border-radius: 10px;
+  
+
+}
+
+.button_delete{
+  margin-left: 13px;
+  margin-bottom: -5px;
+  width: 57px;
+  border-radius: 10px;
+  border: none;
+  height: 19px;
+  color: ghostwhite;
+  box-shadow: -2px -1px 3px 0px;
+    background-color: #ff3021
+}  
 
 
 .flex_row{

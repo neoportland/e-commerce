@@ -10,7 +10,7 @@ import axios from "axios";
 const initialState = { // burası stateti temsi ediyor
   products: [],
   selectedProduct:{}, // detay sayfasında görünen pruduct
-  loading: true, // loading durumuna göre özel bir materaila ui kütüphanesi ile bekleme efekti yapıyoruz 
+  loading: false, // loading durumuna göre özel bir materaila ui kütüphanesi ile bekleme efekti yapıyoruz 
   value: 20,
 };
 
@@ -23,7 +23,7 @@ export const getAllProducts = createAsyncThunk("getAllProducts", async () => { /
 });
 
 export const products = createSlice({
-  name: "counter",
+  name: "product",
   initialState,
   reducers: {
     setSelectedProduct:(state, action)=>{ // seni çağıran sana bir değer verip  anlık bir ürün bilgisi kayıt edicek 
@@ -35,7 +35,7 @@ export const products = createSlice({
   },
   extraReducers: (builder) => { // koda karışık görünebilir ama önemli değil sonuçta bu şekilde programlanması için dizayn edilmiş
     builder.addCase(getAllProducts.pending, (state) => { // 
-      state.loading = true;
+      state.loading = false;
   
     });
     builder.addCase(getAllProducts.fulfilled, (state, action) => {

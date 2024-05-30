@@ -12,16 +12,17 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const Header = () => {
    const [thema, setThema] = useState(true)
-   const {productsCount,value} = useSelector((store)=>store.basket)
-  console.log("headerdaki basket products :",productsCount)
+   const { orderProduct } = useSelector((store)=>store.basket)
+   console.log("toplam ürün ")
+   console.log(orderProduct.length)
   
 
    const navigate = useNavigate()
 
    const cahngeThema =()=>{ 
-    console.log("imleç basıldı ")
+    // console.log("imleç basıldı ")
     const root=document.getElementById("root")
-    console.log(thema)
+    // console.log(thema)
           if(thema){  
           root.style.backgroundColor="black"
           root.style.color="white"
@@ -47,7 +48,7 @@ const Header = () => {
              
 
 
-             <Badge badgeContent={productsCount} color="primary">
+             <Badge badgeContent={orderProduct.length} color="primary">
                <SlBasket  onClick={()=>navigate("/order")}  className='icon'/>
       
               </Badge>            

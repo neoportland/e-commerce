@@ -5,7 +5,10 @@ import OrderShow from './OrderShow'
 
 const Order = () => {
 
-    const {orderProduct}=useSelector((store)=>store.basket)
+    const {orderProduct,totalPrice}=useSelector((store)=>store.basket)
+    
+     console.log(" order.jsx sonuç", orderProduct)
+    
 
     
     
@@ -17,19 +20,19 @@ const Order = () => {
      
   return (
     <div >
-
+      
 <h2 style={{textAlign:"center", color:" #786858", marginBottom:"10px"}} >SİPARİŞ DETAYLARI </h2>
 <header style={{display:"flex",  marginBottom:"15px" }}>
             <h3 style={{paddingRight:"756px", paddingLeft:"49px"}}> Ürün </h3>
-            <h3>Adet </h3>
+            <h3> Fiyat </h3>
 
         </header>
 
 
           {
-                   orderProduct.map((product)=>{
+                   orderProduct.map((product, index)=>{
 
-                return   <OrderShow key={product.id}   {...product}  />
+                return   <OrderShow key={index}   {...product}  />
 
         
                })
@@ -44,7 +47,7 @@ const Order = () => {
 
      <div  >
     
-      <h3 className='totalclas'> toplam Fiyat: 55 tl  </h3>
+      <h3 className='totalclas'> Toplam Fiyat: {totalPrice} $  </h3>
     
         
          </div>

@@ -9,54 +9,44 @@ import { addProductQuantity } from '../redux/slices/basketSlice';
 
 function Details2()  {
 
-
+  // Details' useParams ile aldığı id yi productsSlicedan aldığı ürünlerin id si ile karşılaştırıyor ve bulduğu spesifik productı dispatch ile selectedProduct(product) fonksiyonu ile productSlice a gönderiyor ordanda selectedProduct değişkenine atıyor. Ekle butonu ile tetiklenen fonskiyon basketSlice ına ürünün bilgilerini ve count değerini gönderiyor 
   
   const {id}= useParams()
-  const dispatch=useDispatch()
+  const dispatch=useDispatch() 
 
   const [count, setCount] = useState(1)
 
     const {products, selectedProduct} = useSelector((store)=>store.product) //product adlı depodan verileri çek 
-    const {totalPrice} = useSelector((store)=>store.basket) //product adlı depodan verileri çek 
+    const {totalPrice} = useSelector((store)=>store.basket) // product adlı depodan verileri çek 
+    const {image,title, price, description} =selectedProduct // description  
+
+    //sayfa yenilendiğinde burdaki veriler de yok oluyor. dolayısıyla sayfa yenilendiğinde bunları da bir yerden çekmek lazım.  how is it?
 
     console.log("toplam alışveriş tutarı : ", totalPrice) 
-  
-    
-   
-
-  let arrayTotal=[] 
-  let sayi=0
-  
-  console.log("ArrayTotalfirst",arrayTotal)
-  
+  // let arrayTotal=[] 
+  // let sayi=0 
+      console.log("detailsdeki selectedProduct ")
+  console.log(count, image, id,title)
   const setCountProduct=()=>{
-    sayi=sayi+1
+    // sayi=sayi+1 
     
-    if(sayi>1) return
+    // if(sayi>1) return
+    const payload={
+      image,
+      id,
+      title,
+      price,
+      count,
+      description
+    }
     // arrayTotal.append(selectedProduct)
     // console.log("ArrayTotalappand",arrayTotal)
-    arrayTotal.push(selectedProduct)
-    arrayTotal.push({"count":count})
-
-   
-    dispatch(addProductQuantity(arrayTotal))
-    
-    
-    
+    // arrayTotal.push(selectedProduct) // seçili ürün 
+    // arrayTotal.push({"count":count}) // seçili ürünün kaç adet seçildiği 
+    // dispatch(addProductQuantity(arrayTotal))    
+    dispatch(addProductQuantity(payload)) // karşı tarafta action.payload ile buraya ulaşabiliyorsam ekstra bir arrayTotal oluşturmya grk yok
   }
- 
- 
-   console.log("second array :",arrayTotal)
-
-
-
-
-
-
-
-
-
-     
+    
     useEffect(()=>{
 
         getProductById()
@@ -84,12 +74,6 @@ function Details2()  {
       setCount(count-1)
 
     }
-
-   
-
-
-    //onClick={()=>dispatch(addProductQuantity(count ))} 
-
   return (
     <div style={{
         display:"flex", justifyContent:"space-between"
@@ -106,18 +90,11 @@ function Details2()  {
         <div style={{marginBottom:"15px"}} >
 
        <p  style={{marginBottom:"15px"}} > {selectedProduct.description} </p>
-       <h1  style={{marginBottom:"15px"}} >  {selectedProduct.price}  TL  </h1>
+       <h1  style={{marginBottom:"15px"}} >  {selectedProduct.price}  $   </h1>
 
        <div className='card' style={{width:"679px", height:"auto", margin:"-2px" }}  > 
           <div className='result' >
-          <h5>
-             {/* rate={selectedProduct.rating.rate} *}
-
-            </h5>
-            <h5>
-                       {/* count ={selectedProduct.rating.count} */}
-
-            </h5>
+          
           </div>
           <div  style={{display:"flex",  alignItems:"center"}} > 
           <FaPlus  onClick={increment}  style={{margin:"15px", cursor:"pointer" }} /> <h1 > {count}  </h1> <FaMinus  onClick={decrement}  style={{marginLeft:"15px", cursor:"pointer"}} />
@@ -128,20 +105,10 @@ function Details2()  {
                 <button className='detail_button2'   onClick={setCountProduct}   >Ekle</button>
             </div>
 
-         
-            
-            
-            
              </div>
 
             
         </div>
-
-       
-   
-           
-
-
 
     </div>
   )

@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import OrderShow from './OrderShow'
+import { totalCalculater } from '../redux/slices/basketSlice'
 
 const Order = () => {
+
+  const dispatch= useDispatch()
 
     const {orderProduct,totalPrice}=useSelector((store)=>store.basket)
     
@@ -11,7 +14,10 @@ const Order = () => {
     
 
     
-    
+    useEffect(()=>{
+        dispatch(totalCalculater()) // totalPrice her defasında set edecek fonksiyonu çalıştır
+
+    },[])
 
 
     

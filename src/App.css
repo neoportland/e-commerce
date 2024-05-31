@@ -7,6 +7,10 @@ padding: 0px;
 /* .header {
   background-color: rgb(15, 186, 186);
 } */
+#root{
+  height:var(#ff3021)
+}
+
 .urun_show{
       width: 912px ;
       height: auto;
@@ -68,9 +72,7 @@ padding: 0px;
   align-items: center;
 }
 
-#root{
-  height: 100vh;
-}
+
 
 .image{
   height: 168px;

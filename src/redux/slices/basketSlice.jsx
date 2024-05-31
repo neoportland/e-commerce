@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
- 
- 
-
 
    const getStorage=()=>{
   if(localStorage.getItem("basket"))
@@ -11,29 +8,11 @@ import { createSlice } from '@reduxjs/toolkit'
   return []   
  } 
 
-   }  
-    
-                         
-    
-             
-
- 
-
+   }
        const initialState = {
        orderProduct:getStorage(), // sipariş sepetteki ürünler 
        totalPrice:0,
-       productsCount:0
-
-  // orderProduct:[{
-  //   count:11,
-  //   id:21,
-  //   title:"sehpa",
-  //   desciption:"loremalskdjfasdkfnadslkfnadskj ",
-  //   image:"www.page.com "
-
-  // }]
-  
-  // benim satın aldığım bütün ürünleri ekleyeceğim array. sayfa yenilendiğinde boşalmasın diye ben bu arayi localstorage.setItem olarak kaydedip sonra değerleri çekeceğim yere görndermek için yine localstorage den çekip basmak istediğim yere gönderebilirim . ilk yöntem olarak verileri direk burdan aldığımız için sayfa yenilendiğinde malesef ki veriler ekrana yansımıyordu. ama ben satın aldığım ürünler sepetini eğer ki local arana kaydedip çekersem bu sorun ortadan kalkar                                     
+                                     
 
 }
 
@@ -50,6 +29,32 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
 
+    deleteProduct:(state,action)=>{
+      
+          
+        const deletedByid=state.orderProduct && state.orderProduct.filter((product)=>product.id!=action.payload)
+        state.orderProduct=deletedByid // 
+        localStorage.removeItem("basket")
+        
+
+        sentStorage(deletedByid)
+    
+
+
+    },
+
+         totalCalculater:(state)=>{
+          let result=0;
+            state.orderProduct && state.orderProduct.map((product)=>{
+                                   result+= product.price*product.count
+
+          })
+
+           state.totalPrice=result
+       
+        },
+         
+
           addProductQuantity:(state,action)=>{
      
 
@@ -64,7 +69,7 @@ export const basketSlice = createSlice({
          console.log("basketSlice-> findout :",findProduct)
          console.log("basketSlice->action.payload:", action.payload)
          if(findProduct){
-          const excractedProduct=state.orderProduct.filter((produc)=>produc.id!=action.payload.id) // listeden  ürünü çıkar(yeni gelen ürünün count u farklı kopyası )
+          const excractedProduct=state.orderProduct.filter((produc)=>produc.id!=action.payload.id) // listeden  ürünü çıkar ürünün countunu güncelleyip öyle ekleme yapacağız. (yeni gelen ürünün count u farklı kopyası )
         
           findProduct.count+=action.payload.count, // eski ürünün countu ile yeni ürünün countunu topla 
           state.orderProduct=[...excractedProduct, findProduct] // sipariş listesini toparla 
@@ -92,7 +97,7 @@ export const basketSlice = createSlice({
 })
 
  
- export const { addProductQuantity} = basketSlice.actions
+ export const { addProductQuantity, deleteProduct, totalCalculater} = basketSlice.actions
 
 export default basketSlice.reducer
 

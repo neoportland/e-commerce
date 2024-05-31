@@ -1,17 +1,28 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
+import { addProductQuantity, deleteProduct } from '../redux/slices/basketSlice';
 
 
 
-const OrderShow = ({image, title, price,count}) => {
+const OrderShow = ({image, title,id, price,count}) => {
+  const dispatch=useDispatch()
 
   const {products} =useSelector((store)=>store.product)
 
+  
+   
+   
+ const silme=(event)=> {
+  event.preventDefault()
+  dispatch(deleteProduct(id))
 
+ }
+  
+   
     
  
   
@@ -36,7 +47,7 @@ const OrderShow = ({image, title, price,count}) => {
 {/* <h3 style={{marginRight:"50px"}}>  Adet :  </h3> <br /> */}
 <div style={{display:"flex", alignItems:"center "}}>
 <h3> {count*price}  $   </h3> <br />
-<button className='button_delete' style={{marginLeft:"22px"}}>SİL</button>
+<button  onClick={silme} className='button_delete' style={{marginLeft:"22px"}}>SİL</button>
 </div>
 </div>
 

@@ -12,9 +12,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const Header = () => {
    const [thema, setThema] = useState(true)
-   const { orderProduct } = useSelector((store)=>store.basket)
-   console.log("toplam ürün ")
-   console.log(orderProduct.length)
+   const { orderProduct, productsCount } = useSelector((store)=>store.basket)
+   console.log("toplam ürün adet ")
+   console.log(productsCount)
   
 
    const navigate = useNavigate()

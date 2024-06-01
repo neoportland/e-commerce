@@ -21,12 +21,6 @@ const OrderShow = ({image, title,id, price,count}) => {
   dispatch(deleteProduct(id))
 
  }
-  
-   
-    
- 
-  
-
   return (
     <div >
         
@@ -41,8 +35,9 @@ const OrderShow = ({image, title,id, price,count}) => {
 
 <div  style={{display:"flex", justifyContent:"space-between", width:"255px"}} >
 <div  style={{display:"flex", marginRight:"20px",  alignItems:"center"}} > 
-
-          <FaPlus    style={{margin:"5px",fontSize:"12px", cursor:"pointer" }} /> <h4 > {count} </h4> <FaMinus   style={{marginLeft:"5px", fontSize:"12px",  cursor:"pointer"}} />
+<h4 > Adet: {count} </h4>
+{/* 
+          <FaPlus    style={{margin:"5px",fontSize:"12px", cursor:"pointer" }} /> <h4 > {count} </h4> <FaMinus   style={{marginLeft:"5px", fontSize:"12px",  cursor:"pointer"}} /> */}
           </div> 
 {/* <h3 style={{marginRight:"50px"}}>  Adet :  </h3> <br /> */}
 <div style={{display:"flex", alignItems:"center "}}>

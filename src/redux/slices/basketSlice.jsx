@@ -76,7 +76,7 @@ export const basketSlice = createSlice({
  
  export const { addProductQuantity, deleteProduct, totalCalculater} = basketSlice.actions
 
-export default basketSlice.reducer
+ export default basketSlice.reducer
 
 
  

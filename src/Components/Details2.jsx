@@ -19,14 +19,7 @@ function Details2()  {
     const {products, selectedProduct} = useSelector((store)=>store.product) //product adlı depodan verileri çek 
     const {totalPrice} = useSelector((store)=>store.basket) // product adlı depodan verileri çek 
     const {image,title, price, description} =selectedProduct // description  
-
-    //sayfa yenilendiğinde burdaki veriler de yok oluyor. dolayısıyla sayfa yenilendiğinde bunları da bir yerden çekmek lazım.  how is it?
-
-    console.log("toplam alışveriş tutarı : ", totalPrice) 
-  // let arrayTotal=[] 
-  // let sayi=0 
-      console.log("detailsdeki selectedProduct ")
-  console.log(count, image, id,title)
+       
   const setCountProduct=()=>{
     // sayi=sayi+1 
     

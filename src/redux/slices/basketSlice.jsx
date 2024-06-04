@@ -13,16 +13,12 @@ import { createSlice } from '@reduxjs/toolkit'
        orderProduct:getStorage(), // sipariş sepetteki ürünler 
        totalPrice:0,
                                      
-
 }
 
 const sentStorage =(event)=>{               
   localStorage.setItem("basket",JSON.stringify(event)) 
    
 }
-
-
- 
 
 export const basketSlice = createSlice({
   name: 'basket',
@@ -57,20 +53,11 @@ export const basketSlice = createSlice({
 
           addProductQuantity:(state,action)=>{
      
+          
+         const findProduct=state.orderProduct && state.orderProduct.find((produc)=> produc.id==action.payload.id) // ürün işaretlendi 
 
-      console.log("basketSlice action:", action.payload)     
-      console.log("basketSlice -> state.orderProduct:", state.orderProduct)     
-       
-      // aşağıdaki kod gelen eleman benim sipariş listemde arıyorum ve findProduct adlı değişkene atıyorum yoksa else çalışıyor
-
-     
-         const findProduct=state.orderProduct && state.orderProduct.find((produc)=> produc.id==action.payload.id)
-
-         console.log("basketSlice-> findout :",findProduct)
-         console.log("basketSlice->action.payload:", action.payload)
          if(findProduct){
-          const excractedProduct=state.orderProduct.filter((produc)=>produc.id!=action.payload.id) // listeden  ürünü çıkar ürünün countunu güncelleyip öyle ekleme yapacağız. (yeni gelen ürünün count u farklı kopyası )
-        
+          const excractedProduct=state.orderProduct.filter((produc)=>produc.id!=action.payload.id) 
           findProduct.count+=action.payload.count, // eski ürünün countu ile yeni ürünün countunu topla 
           state.orderProduct=[...excractedProduct, findProduct] // sipariş listesini toparla 
           sentStorage(state.orderProduct) // yeni oluşan listeyi local e gönder 
@@ -78,28 +65,18 @@ export const basketSlice = createSlice({
                   
          }
         else{
-          // state.orderProduct+=findProduct
            state.orderProduct=[...state.orderProduct, action.payload]
            sentStorage(state.orderProduct)
-           
-           
+                     
         }
-      
-      
-
-      
-
     },
-
-   
-    
   },
 })
 
  
  export const { addProductQuantity, deleteProduct, totalCalculater} = basketSlice.actions
 
-export default basketSlice.reducer
+ export default basketSlice.reducer
 
 
  

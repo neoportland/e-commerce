@@ -10,8 +10,7 @@ const Order = () => {
 
     const {orderProduct,totalPrice}=useSelector((store)=>store.basket)
     
-     console.log(" order.jsx sonuç", orderProduct)
-    
+      
 
     
     useEffect(()=>{

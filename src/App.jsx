@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./App.css"
 import Loading from "./Components/Loading"
 
@@ -7,23 +8,28 @@ import Header from "./Components/Header"
 import RouterConfig from "./Components/RouterConfig"
 import Drawer from '@mui/material/Drawer';
 import { useState } from "react"
+
+// import Searching from "./Components/Searching"
  
 function App() { 
   const [anahtar, setanAhtar] = useState(false)
+
 
   //PageSurround u göster sonra da  pagesurround benim en daşşaklı divim aslında onun içindeki children header ı karşılık geliyor istediğin yerde kullanabilirisin  
 
   const switchChange=()=>{
     setanAhtar(!anahtar)
   }
- 
+
+  
 
   return (
     <div className="app" /* style={{margin:"0 150px"}} */ >  
 
      <PageSurround>  
       <Loading/>     
-      <Header/> 
+      <Header /> 
+   
     <RouterConfig/>
      </PageSurround>
 
